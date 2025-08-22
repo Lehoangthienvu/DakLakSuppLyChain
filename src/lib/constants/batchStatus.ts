@@ -1,0 +1,58 @@
+import {
+  Clock4,
+  Loader2,
+  CheckCircle,
+  XCircle,
+  LucideIcon,
+} from "lucide-react";
+
+export enum ProcessingStatus {
+  NotStarted = "NotStarted",
+  InProgress = "InProgress",
+  Completed = "Completed",
+  AwaitingEvaluation = "AwaitingEvaluation",
+  Cancelled = "Cancelled",
+}
+
+export interface ProcessingStatusInfo {
+  label: string;
+  icon: LucideIcon;
+  bgClass: string;
+  textClass: string;
+}
+
+export const ProcessingStatusMap: Record<
+  ProcessingStatus,
+  ProcessingStatusInfo
+> = {
+  [ProcessingStatus.NotStarted]: {
+    label: "Chưa bắt đầu",
+    icon: Clock4, // đồng hồ
+    bgClass: "bg-yellow-100",
+    textClass: "text-yellow-800",
+  },
+  [ProcessingStatus.InProgress]: {
+    label: "Đang xử lý",
+    icon: Loader2, // vòng quay xử lý
+    bgClass: "bg-blue-100",
+    textClass: "text-blue-800",
+  },
+  [ProcessingStatus.Completed]: {
+    label: "Hoàn thành",
+    icon: CheckCircle,
+    bgClass: "bg-green-100",
+    textClass: "text-green-800",
+  },
+  [ProcessingStatus.AwaitingEvaluation]: {
+    label: "Chờ đánh giá",
+    icon: Clock4,
+    bgClass: "bg-orange-100",
+    textClass: "text-orange-800",
+  },
+  [ProcessingStatus.Cancelled]: {
+    label: "Đã huỷ",
+    icon: XCircle,
+    bgClass: "bg-red-100",
+    textClass: "text-red-800",
+  },
+};
