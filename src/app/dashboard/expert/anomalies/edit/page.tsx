@@ -6,18 +6,18 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
-interface Props {
-    adviceId: string;
-    initialData: {
-        responseType: string;
-        adviceSource: string;
-        adviceText: string;
-        attachedFileUrl?: string;
-    };
-}
-
-export default function ExpertAdviceUpdateForm({ adviceId, initialData }: Props) {
+export default function EditAnomalyPage() {
     const router = useRouter();
+    
+    // Mock data - thay thế bằng logic thực tế
+    const adviceId = '123';
+    const initialData = {
+        responseType: 'Observation',
+        adviceSource: 'Thực tế đồng ruộng',
+        adviceText: 'Nội dung tư vấn mẫu...',
+        attachedFileUrl: undefined
+    };
+    
     const [form, setForm] = useState(initialData);
     const [loading, setLoading] = useState(false);
 
