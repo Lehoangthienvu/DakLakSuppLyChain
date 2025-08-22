@@ -5,12 +5,7 @@ import { createExpertAdvice, createExpertAdviceWithFiles } from '@/lib/api/exper
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 
-type Props = {
-    reportId: string;
-    onSuccess?: () => void; // 👈 thêm
-};
-
-export default function ExpertAdviceForm({ reportId, onSuccess }: Props) {
+export default function CreateAnomalyPage() {
     const [form, setForm] = useState({
         responseType: 'Observation',
         adviceSource: '',
@@ -20,6 +15,9 @@ export default function ExpertAdviceForm({ reportId, onSuccess }: Props) {
 
     const [loading, setLoading] = useState(false);
     const router = useRouter();
+    
+    // Mock reportId - thay thế bằng logic thực tế
+    const reportId = '123';
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, [name]: value }));
@@ -71,7 +69,8 @@ export default function ExpertAdviceForm({ reportId, onSuccess }: Props) {
 
             toast.success('Phản hồi đã được gửi thành công 🎉');
 
-            if (onSuccess) onSuccess(); // ✅ gọi callback nếu có
+            // Redirect sau khi thành công
+            router.push('/dashboard/expert/anomalies');
         } catch (err: any) {
             console.error('Lỗi gửi phản hồi:', err);
             if (err.response?.data?.message) {
